@@ -2,13 +2,14 @@ const { SlashCommandBuilder } = require("discord.js");
 const axios = require("axios");
 
 async function buscarPokemon(pokemon) {
+  pokemon = pokemon.toLowerCase();
   try {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
     const response = await axios.get(url);
-    //console.log("buscarPokemon", response.data)
     return response.data;
   } catch (error) {
-    console.log("error al buscar el pokemon");
+    console.log("Error al buscar el pokemon:");
+    return null;
   }
 }
 
@@ -21,14 +22,22 @@ module.exports = {
     ),
   async execute(interaction) {
     const pokemon = interaction.options.getString("input");
-    //console.log(interaction.options)
+    //console.log(pokemon);
     const pokemonEncontrado = await buscarPokemon(pokemon);
-    const datosPokemon = `
+    
+
+    console.log("datos pokemon" , pokemonEncontrado);
+    if (pokemonEncontrado !== null) {
+      let datosPokemon = `
     Pokemon encontrado 
     ${pokemonEncontrado.id}
     ${pokemonEncontrado.name}
-    ${pokemonEncontrado.types[0].type.name}
+${pokemonEncontrado.types[0].type.name}
     `;
-    await interaction.reply(datosPokemon);
+       await interaction.reply(datosPokemon);
+    } else {
+       await interaction.reply("No se encontro el pokemon");
+    }
+    
   },
 };
