@@ -59,6 +59,10 @@ for (const folder of commandFolders) {
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
   getChannelsIds(client);
+  const channel = client.channels.cache.get('1056214809189830728'); // Reemplaza 'ID_DEL_CANAL' con el ID del canal donde quieres que el bot envíe el mensaje
+  if (channel) {
+    channel.send('Zety listo para servir');
+  }
 });
 
 // ESCUCHA EL EVENTO InteractionCreate, que se dispara cuando se crea una interacción (por ejemplo, cuando se ejecuta un comando de entrada de chat)
