@@ -22,6 +22,8 @@ const { generateDependencyReport } = require('@discordjs/voice');
 console.log(generateDependencyReport());
 
 
+
+
 // Lee el contenido de la carpeta 'commands' y almacena los nombres de todas las subcarpetas en una matriz (array)
 const commandFolders = fs.readdirSync(foldersPath);
 
