@@ -3,6 +3,8 @@ const path = require("path");
 // Require the necessary discord.js classes
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 
+const { joinVoiceChannel, createAudioPlayer, createAudioResource, entersState } = require ('@discordjs/voice');
+
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -14,6 +16,10 @@ client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
 
 
+//VOICE
+const { generateDependencyReport } = require('@discordjs/voice');
+
+console.log(generateDependencyReport());
 
 
 // Lee el contenido de la carpeta 'commands' y almacena los nombres de todas las subcarpetas en una matriz (array)
